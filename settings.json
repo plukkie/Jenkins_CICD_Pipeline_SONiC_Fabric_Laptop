@@ -26,13 +26,13 @@
 			"intmgtnet"    : "172.16.0.0",
 			"ipv4gw"       : "254",
 			"ipv4mask"     : "24",
-			"oobmgtstart"  : "10.204.11.155",
+			"oobmgtstart"  : "10.10.10.11",
 			"bordersubnet" : "2.0.1.0",
 			"borderas"     : 65000
 		}
 	},
 	"gns3"	: {
-		"serverip"	: "10.204.11.142",
+		"serverip"	: "10.10.10.202",
 		"serverport"	: "80",
 		"projecturi"	: "v2/projects",
 		"templatesuri"	: "v2/templates",
@@ -40,7 +40,7 @@
 		"nodesstarturi"	: "start",
 		"nodesstopuri"	: "stop",
 		"prot"		: "http://",
-		"starttimeout"  : 1500,
+		"starttimeout"  : 1800,
 		"boottimer"	: 180,
 		"newprojectdevjson": {
 				    "name" : "SONiC_Dev_Fabric",
@@ -51,7 +51,7 @@
 			"posshift"  : 150,
 			"templates" : {
 				"leaf"	: { 
-					"name"  : "Enterprise SONiC 3.5.2", 
+					"name"  : "Enterprise SONiC 3.5.4", 
 					"count" : 4,
 					"pos"   : { "x" : -50, "y" : 42 },
 					"mac" 	: { "base" : "cc:bb:aa:", "start" : 11 },
@@ -60,27 +60,27 @@
 					"borderlinks" : { "1st_adapter_number" : 2, "adapterstep" : 4, "port" : 0, "portstep" : 0 },
 					"mgtport" : { "adapter_number" : 0, "port_number" : 0 },
 					"hosts" : {
-						"name"  : "Enterprise SONiC 3.5.2", 
+						"name"  : "Enterprise SONiC 3.5.4", 
 						"count" : 1,
 						"leaflinks" : { "1st_adapter_number" : 4, "adapterstep" : 4, "port" : 0, "portstep" : 0 },
 						"hostlinks" : { "1st_adapter_number" : 1, "adapterstep" : 1, "port" : 0, "portstep" : 0 },
 						"mgtport" : { "adapter_number" : 0, "port_number" : 0 },
-						"mac" : { "base" : "cc:bb:aa:", "start" : 41 }
+						"mac" : { "base" : "aa:bb:cc:", "start" : 41 }
 					}
 				},
 				"border" : {
-					"name"  : "Enterprise SONiC 3.5.2", 
-					"count" : 2,
+					"name"  : "Enterprise SONiC 3.5.4", 
+					"count" : 1,
 					"pos"   : { "x" : -250, "y" : -200 },
-					"mac" 	: { "base" : "cc:bb:aa:", "start" : 31 },
+					"mac" 	: { "base" : "aa:bb:cc:", "start" : 31 },
 					"mgtport" : { "adapter_number" : 0, "port_number" : 0 },
 					"vlti"	: { "count" : 0, "1st_adapter_number" : 0, "adapterstep" : 1,"port" : 0, "portstep" : 0 },
 					"interlinks" : { "1st_adapter_number" : 1, "adapterstep" : 4, "port" : 0, "portstep" : 0 },
 					"borderlinks" : { "1st_adapter_number" : 8, "adapterstep" : 1, "port" : 0, "portstep" : 0 }
 				},
 				"spine" : {
-					"name"  : "Enterprise SONiC 3.5.2",
-					"count" : 2,
+					"name"  : "Enterprise SONiC 3.5.4",
+					"count" : 1,
 					"pos"   : { "x" : 100, "y" : -200 },
 					"mac" 	: { "base" : "cc:bb:aa:", "start" : 21 },
 					"vlti"	: { "count" : 0, "1st_adapter_number" : 8, "adapterstep" : 1,"port" : 0, "portstep" : 0 },
@@ -98,7 +98,7 @@
 		}
 	},
 	"awx"	: {
-		"serverip"	: "10.204.11.144",
+		"serverip"	: "10.10.10.201",
 		"serverport"	: "30080",
 		"prot"		: "http://",
 		"projecturi"	: "api/v2/job_templates",
@@ -108,17 +108,17 @@
 		"prodstage_jobtemplate_name_test" : "",
 		"prodstage_jobtemplate_name_deploy" : "",
 		"launchsuffix"	: "launch",
-		"httpheaders"	: { "Authorization" : "Bearer Ey8BiQpWEhYD6X5UHWuWk6tACAIdbP" }
+		"httpheaders"	: { "Authorization" : "Bearer Qm5mkUKBjhr9PIVf3NK48EH4Bu1UQe" }
 	},
 	"ztp"	: {
-		"serverip"	      : "10.204.11.135",
+		"serverip"	      : "10.10.10.201",
 		"serverport"	      : "80",
 		"ztp_finished_dir"    : "tftpboot/ztp_finished",
 		"ztp_finished_suffix" : ".ztp.finished",
 		"prot"		      : "http://"
 	},
 	"externals" : {
-		"ansible_playbook_repo" : { "url" : "https://github.com/plukkie/FDC_Ansible_SONiC_EVPN_Fabric.git", "inventoryfile" : "hosts" }
+		"ansible_playbook_repo" : { "url" : "https://github.com/plukkie/Ansible_SONiC_EVPN_Fabric_Laptop.git", "inventoryfile" : "hosts" }
 
 	}
 }
