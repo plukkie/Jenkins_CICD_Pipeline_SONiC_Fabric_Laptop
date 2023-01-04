@@ -31,7 +31,7 @@ pipeline {
 	stage('Stage Dev: Provision GNS3 Dev network.....') {
 		
 		environment {
-			LS = "${sh(script:'python3 -u startcicd.py creategns3project devstage | grep "proceed"', returnStdout: true).trim()}"
+			LS = "${sh(script:'python3 -u startcicd.py creategns3project devstage config=settings_laptop.json | grep "proceed"', returnStdout: true).trim()}"
     		}
       		
 		steps {
