@@ -350,6 +350,7 @@ def provisiongns3project (jsonobject):
     switchnr = 0 #counter for only leaf & spine switches
     bswitchnr = 0
     projecturl = baseurl + '/' + projecturi + '/' + projectid
+    computeurl = baseurl + '/v2/projects/' + projectid
 
     #First create Host nodes
     hostlinkarray = [] #This array is used to create links between leafs and hosts
@@ -371,12 +372,19 @@ def provisiongns3project (jsonobject):
         counter = 0
         absolutehostswitchnr = leafcount + spinecount + bordercount
 
-
         for tn in jsondict: #Loop through available templates in GNS3 and find id
             if tn['name'] == hosttemplatename: #Found template match for servernodes
                 tid = tn['template_id'] #VNF Template ID from GNS3
+                cid = tn['compute_id'] #compute id of template
+                ttype = tn['template_type']
                 print('Found template for Hostnode with id ' + tid + ' with name ' + hosttemplatename)
-                urltuple = ( createnodeurl+'/'+tid, httpheaders )
+                if cid == None or cid == 'null': #Embedded GNS3 template
+                    #urltuple = ( computeurl+'/'+ttype+'/nodes', httpheaders )
+                    urltuple = ( computeurl+'/templates/' + tid, httpheaders )
+                else: #Custom GNS3 template
+                    urltuple = ( createnodeurl+'/'+tid, httpheaders )
+
+                print(urltuple)
                 startx = hostpos['x'] + int(posshift/2) 
                 starty = hostpos['y'] + int(posshift)
                 i = 0
@@ -399,13 +407,13 @@ def provisiongns3project (jsonobject):
 
                         counter += 1
                         absolutehostswitchnr += 1
-                        jsonadd = { "x" : x, "y" : y } #Position of the node on GNS raster
+                        if cid == None or cid == 'null': jsonadd = { "compute_id" : "local", "x" : x, "y" : y }
+                        else: jsonadd = { "x" : x, "y" : y } #Position of the node on GNS raster
                         resp = json.loads(request ( urltuple, "post", jsonadd )) #create node in project
                         nodeid = resp['node_id'] #Get nodeid for later usage
                         time.sleep(0.5)
                         x += int(posshift/3) #How much to shift position for next device icon
                         y += int(posshift/3) #How much to shift position for next device icon
-
 
                         hostmac = hostbasemac + str(hostmacstart) + macadd
                         newdict['nodes']['host'+str(counter)] = { "nodeid" : nodeid, "mgtport" : hostmgtports, "mac" : hostmac, 'nr' : absolutehostswitchnr }
