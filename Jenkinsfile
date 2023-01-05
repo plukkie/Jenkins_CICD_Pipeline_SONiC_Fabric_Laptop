@@ -1,7 +1,7 @@
 pipeline {
 	
   environment {
-        noztpcheck = ''
+        Xnoztpcheck = ''
   }
 
   agent any
@@ -40,8 +40,9 @@ pipeline {
 		steps {
 			script {
 				//echo "${env.LS}"
+				env.noztpcheck = ""
 				if (env.LS == 'proceed = True') {
-					noztpcheck = env.noztpcheck
+					//noztpcheck = env.noztpcheck
 					echo 'Dev Network provisioning finished. Proceed to Stage Dev: Start Dev network.'
 					echo 'This can take ~15 minutes if ZTP staging is involved.....'
                                         sleep( time: 2 )
@@ -64,7 +65,7 @@ pipeline {
     	stage('Stage Dev: Start GNS3 ZTP staging.....') {
 
 		environment {
-			LS = "${sh(script:'python3 -u startcicd.py startgns3 devstage ${env.noztpcheck} | grep "proceed"', returnStdout: true).trim()}"
+			LS = "${sh(script:'python3 -u startcicd.py startgns3 devstage ${noztpcheck} | grep "proceed"', returnStdout: true).trim()}"
 		}
 		
 		steps {
