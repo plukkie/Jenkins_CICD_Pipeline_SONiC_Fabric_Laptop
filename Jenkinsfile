@@ -35,7 +35,7 @@ pipeline {
       		
 		steps {
 			script {
-				//echo "${env.LS}"
+				println "Feedback from python script: ${env.LS}"
 				if (env.LS == 'proceed = True') {
 					env.noztpcheck = ''
 					echo 'Dev Network provisioning finished. Proceed to Stage Dev: Start Dev network.'
@@ -67,6 +67,7 @@ pipeline {
 			script {
 				//echo "${env.LS}"
 				//echo "${noztpcheck}"
+				println "Feedback from python script: ${env.LS}"
 				if (env.LS == 'proceed = True') {
 					echo 'Dev network succesfully started. Proceed to Stage Dev: Configure Dev network.'
 					echo 'This can take ~15 minutes.....'
@@ -89,6 +90,7 @@ pipeline {
                             
 		steps {			
 			script {
+				println "Feedback from python script: ${env.LS}"
 				echo 'Configuration Job finished.'
 				//echo "${env.LS}"
 				if (env.LS == 'proceed = True') { //100% oke
@@ -104,7 +106,7 @@ pipeline {
 					sleep( time: 2 )
 					env.RL = "${sh(script:"""python3 -u startcicd.py launchawx relaunch $relaunchuri | grep 'proceed'""", returnStdout: true).trim()}"
 					//echo "${env.RL}" //Show for logging, clearity
-					
+					println "Feedback from python script: ${RL}"
 					if (env.RL == 'proceed = True') { //100% oke
 						echo 'Succesfull Job completion.'
             					echo 'Proceed to Stage Dev fase Validate operational status.'
@@ -131,6 +133,7 @@ pipeline {
             
 		steps {
 			script {
+				println "Feedback from python script: ${env.LS}"
 				echo 'Closed loop Validation succesfully finished.'
 				//echo "${env.LS}"
 				if (env.LS == 'proceed = True') {
