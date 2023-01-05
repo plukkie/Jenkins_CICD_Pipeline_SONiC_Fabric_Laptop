@@ -41,6 +41,7 @@ pipeline {
 			script {
 				//echo "${env.LS}"
 				if (env.LS == 'proceed = True') {
+					noztpcheck = env.noztpcheck
 					echo 'Dev Network provisioning finished. Proceed to Stage Dev: Start Dev network.'
 					echo 'This can take ~15 minutes if ZTP staging is involved.....'
                                         sleep( time: 2 )
@@ -68,8 +69,8 @@ pipeline {
 		
 		steps {
 			script {
-				echo "${env.LS}"
-				echo $noztpcheck
+				//echo "${env.LS}"
+				//echo $noztpcheck
 				if (env.LS == 'proceed = True') {
 					echo 'Dev network succesfully started. Proceed to Stage Dev: Configure Dev network.'
 					echo 'This can take ~15 minutes.....'
