@@ -874,6 +874,9 @@ def test_reachability ( addresslist):
 
 def check_ztp_finish ( addresslist):
 
+    fabricswitchcount = settings['gns3']['nodesdata']['templates']['leaf']['count'] +\
+                        settings['gns3']['nodesdata']['templates']['spine']['count']
+
     ztpjson = settings['ztp']
     reportdir = ztpjson['ztp_finished_dir']
     reportfilesuffix = ztpjson['ztp_finished_suffix']
@@ -884,9 +887,11 @@ def check_ztp_finish ( addresslist):
     hosts = addresslist['hosts']
     result = 'down'
     ztpstats = {}
+    goodcnt = 0
 
     print('Check ztp status for all nodes...')
     time.sleep(2)
+    
     for ip in hosts:
 
         if hosts[ip]['type'] != 'unknown': #Only check ztp status of fabric nodes (spine/leaf)
@@ -903,17 +908,21 @@ def check_ztp_finish ( addresslist):
             else:
                 result = 'ztp_finished'
                 print ('GOOD !! ' + ip, 'is ' + result + ' !')
+                goodcnt ++
 
             ztpstats[ip] = result
             time.sleep(3)
 
-    for item in ztpstats:
-        status = ztpstats[item]
-        if status == 'ztp_busy':
-            result = status
-            break
-        else:
-            result = status
+    if goodcnt >= fabricswitchcount:
+        result = 'ztp_finished'
+    else:
+        for item in ztpstats:
+            status = ztpstats[item]
+            if status == 'ztp_busy':
+                result = status
+                break
+            else:
+                result = status
 
     return result
 
