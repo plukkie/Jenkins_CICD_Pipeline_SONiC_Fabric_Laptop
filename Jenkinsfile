@@ -1,7 +1,7 @@
 pipeline {
 	
   environment {
-        noztpcheck = 'test'
+        noztpcheck = ''
   }
 
   agent any
@@ -64,7 +64,7 @@ pipeline {
     	stage('Stage Dev: Start GNS3 ZTP staging.....') {
 
 		environment {
-			LS = "${sh(script:'python3 -u startcicd.py startgns3 devstage "${noztpcheck}" | grep "proceed"', returnStdout: true).trim()}"
+			LS = "${sh(script:'python3 -u startcicd.py startgns3 devstage "${env.noztpcheck}" | grep "proceed"', returnStdout: true).trim()}"
 		}
 		
 		steps {
