@@ -1,7 +1,7 @@
 pipeline {
 	
   environment {
-        noztpcheck = ''
+        noztpcheck = 'test'
   }
 
   agent any
