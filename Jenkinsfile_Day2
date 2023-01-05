@@ -27,6 +27,7 @@ pipeline {
                             
 		steps {			
 			script {
+				println "Feedback from python script: ${env.LS}"
 				echo 'Configuration Job finished.'
 				//echo "${env.LS}"
 				if (env.LS == 'proceed = True') { //100% oke
@@ -42,6 +43,7 @@ pipeline {
 					sleep( time: 2 )
 					env.RL = "${sh(script:"""python3 -u startcicd.py launchawx relaunch $relaunchuri | grep 'proceed'""", returnStdout: true).trim()}"
 					//echo "${env.RL}" //Show for logging, clearity
+					println "Feedback from python script: ${RL}"
 					
 					if (env.RL == 'proceed = True') { //100% oke
 						echo 'Succesfull Job completion.'
@@ -69,6 +71,7 @@ pipeline {
             
 		steps {
 			script {
+				println "Feedback from python script: ${env.LS}"
 				echo 'Closed loop Validation succesfully finished.'
 				//echo "${env.LS}"
 				if (env.LS == 'proceed = True') {
