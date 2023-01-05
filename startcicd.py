@@ -908,7 +908,7 @@ def check_ztp_finish ( addresslist):
             else:
                 result = 'ztp_finished'
                 print ('GOOD !! ' + ip, 'is ' + result + ' !')
-                goodcnt ++
+                goodcnt += 1
 
             ztpstats[ip] = result
             time.sleep(3)
