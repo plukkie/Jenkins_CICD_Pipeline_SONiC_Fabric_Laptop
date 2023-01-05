@@ -115,7 +115,8 @@
 		"serverport"	      : "80",
 		"ztp_finished_dir"    : "tftpboot/ztp_finished",
 		"ztp_finished_suffix" : ".ztp.finished",
-		"prot"		      : "http://"
+		"prot"		      : "http://",
+		"dyn_http_contname"   : "ztdserver_ztd-httpd_1"
 	},
 	"externals" : {
 		"ansible_playbook_repo" : { "url" : "https://github.com/plukkie/Ansible_SONiC_EVPN_Fabric_Laptop.git", "inventoryfile" : "hosts" }

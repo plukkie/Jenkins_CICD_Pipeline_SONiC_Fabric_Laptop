@@ -875,9 +875,11 @@ def test_reachability ( addresslist):
 def check_ztp_finish ( addresslist):
 
     ztpjson = settings['ztp']
+    webcontainer = ztpjson['dyn_http_contname']
+    if webcontainer == "": ztp_finish_base_url = ztpjson['prot'] + ztpjson['serverip'] + '/' + reportdir
+    else ztp_finish_base_url = ztpjson['prot'] + webcontainer + '/' + reportdir
     reportdir = ztpjson['ztp_finished_dir']
     reportfilesuffix = ztpjson['ztp_finished_suffix']
-    ztp_finish_base_url = ztpjson['prot'] + ztpjson['serverip'] + '/' + reportdir
     hosts = addresslist['hosts']
     result = 'down'
     ztpstats = {}
@@ -904,9 +906,6 @@ def check_ztp_finish ( addresslist):
             ztpstats[ip] = result
             time.sleep(3)
 
-    #For All checked nodes, check now the result status
-    #If discover a node with status ztp_busy, break and return its not ready status
-    #If all have finished status return finished status
     for item in ztpstats:
         status = ztpstats[item]
         if status == 'ztp_busy':
@@ -973,7 +972,9 @@ if 'creategns3project' in sys.argv[1:]: #Add nodes to project in GNS3
     print(result)
     sys.exit()
 
+
 if 'gns' in urltuple[2]['runtype'] and 'start' in urltuple[0]: #Nodes are started, start checking
+
     if 'noztp_check' in sys.argv:
         print('Cli arg "noztp_check" discovered. Assuming nodes are already ZTP staged and reachable.')
         print('Will wait ' + str(settings['gns3']['boottimer']) + ' secs for systems to become ready.') 
@@ -1004,7 +1005,6 @@ if 'gns' in urltuple[2]['runtype'] and 'start' in urltuple[0]: #Nodes are starte
                 print('proceed = False') #Used by Jenkins
                 sys.exit()
 
-            print('RESULT RETURN OF  def check_ztp_finish: ' + result)
             if result == 'ztp_finished':
                 print('Testing finished. All Success.')
                 print('proceed = True') #Used by Jenkins
