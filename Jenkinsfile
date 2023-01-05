@@ -1,4 +1,4 @@
-noztpcheck = ''
+def noztpcheck
 
 pipeline {
   agent any
