@@ -69,8 +69,8 @@ pipeline {
 		
 		steps {
 			script {
-				//echo "${env.LS}"
-				//echo $noztpcheck
+				echo "${env.LS}"
+				echo $noztpcheck
 				if (env.LS == 'proceed = True') {
 					echo 'Dev network succesfully started. Proceed to Stage Dev: Configure Dev network.'
 					echo 'This can take ~15 minutes.....'
