@@ -64,14 +64,13 @@ pipeline {
     	stage('Stage Dev: Start GNS3 ZTP staging.....') {
 
 		environment {
-			noztpcheck = $noztpcheck
 			LS = "${sh(script:'python3 -u startcicd.py startgns3 devstage $noztpcheck | grep "proceed"', returnStdout: true).trim()}"
 		}
 		
 		steps {
 			script {
 				echo "${env.LS}"
-				echo ${noztpcheck}
+				//echo ${noztpcheck}
 				if (env.LS == 'proceed = True') {
 					echo 'Dev network succesfully started. Proceed to Stage Dev: Configure Dev network.'
 					echo 'This can take ~15 minutes.....'
