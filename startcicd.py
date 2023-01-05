@@ -875,11 +875,12 @@ def test_reachability ( addresslist):
 def check_ztp_finish ( addresslist):
 
     ztpjson = settings['ztp']
+    reportdir = ztpjson['ztp_finished_dir']
+    reportfilesuffix = ztpjson['ztp_finished_suffix']
     webcontainer = ztpjson['dyn_http_contname']
     if webcontainer == "": ztp_finish_base_url = ztpjson['prot'] + ztpjson['serverip'] + '/' + reportdir
     else: ztp_finish_base_url = ztpjson['prot'] + webcontainer + '/' + reportdir
-    reportdir = ztpjson['ztp_finished_dir']
-    reportfilesuffix = ztpjson['ztp_finished_suffix']
+
     hosts = addresslist['hosts']
     result = 'down'
     ztpstats = {}
