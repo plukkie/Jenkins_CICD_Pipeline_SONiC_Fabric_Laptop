@@ -65,12 +65,26 @@ def return_url ( settingsobject ):
             if type(resp) == str: resp = json.loads(resp) #From str to json
             stopped = False #used to track if a gns3 node is stopped
             for item in resp: #find all nodes and their status
+                nodename = item['name']
+                nodeid = item['node_id']
                 status = item['status'].lower()
                 if status == 'stopped': #Stopped node, need to start all nodes with API request
                     stopped = True
                     print('There is a stopped node. Will start all nodes now in GNS3')
                     url = url +  "/" + s['nodescheck'] + '/' + s['nodesstarturi']
                     break #exit loop
+                    """
+                    if 'leaf' in nodename.lower() or 'spine' in nodename.lower():
+                        print('There is a stopped fabric node. Will start node ' + nodename + ' in GNS3...')
+                        starturl = checkurl + '/' + nodeid + '/' + s['nodesstarturi']
+                        nodestarttuple = ( starturl, httpheaders )
+                        print(nodestarttuple)
+                        resp = request ( nodestarttuple, "post") 
+                        time.sleep(1)
+                        url = url +  "/" + s['nodescheck'] + '/' + s['nodesstarturi']
+                        #url = url +  "/" + s['nodescheck'] + '/' + s['nodesstarturi']
+                        break #exit loop
+                    """
 
             if stopped == False: url = "proceed = True" #All nodes already started, jenkins can proceed
   
