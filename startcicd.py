@@ -69,24 +69,25 @@ def return_url ( settingsobject ):
                 nodeid = item['node_id']
                 status = item['status'].lower()
                 if status == 'stopped': #Stopped node, need to start all nodes with API request
-                    stopped = True
-                    print('There is a stopped node. Will start all nodes now in GNS3')
-                    url = url +  "/" + s['nodescheck'] + '/' + s['nodesstarturi']
-                    break #exit loop
-                    """
+                    #stopped = True
+                    #print('There is a stopped node. Will start all nodes now in GNS3')
+                    #url = url +  "/" + s['nodescheck'] + '/' + s['nodesstarturi']
+                    #break #exit loop
                     if 'leaf' in nodename.lower() or 'spine' in nodename.lower():
+                        stopped = True
                         print('There is a stopped fabric node. Will start node ' + nodename + ' in GNS3...')
                         starturl = checkurl + '/' + nodeid + '/' + s['nodesstarturi']
                         nodestarttuple = ( starturl, httpheaders )
                         print(nodestarttuple)
                         resp = request ( nodestarttuple, "post") 
                         time.sleep(1)
-                        url = url +  "/" + s['nodescheck'] + '/' + s['nodesstarturi']
-                        #url = url +  "/" + s['nodescheck'] + '/' + s['nodesstarturi']
-                        break #exit loop
-                    """
+
+                        #url = url +  "/" + s['nodescheck']
+            #url = url +  "/" + s['nodescheck'] + '/' + s['nodesstarturi']
+            #break #exit loop
 
             if stopped == False: url = "proceed = True" #All nodes already started, jenkins can proceed
+            else: url = checkurl + '/allstarted'
   
         #stop all gns3 nodes
         if 'stopgns3' in a[1:]: url = url + "/" + s['nodescheck'] + '/' + s['nodesstopuri']
@@ -996,7 +997,7 @@ if 'creategns3project' in sys.argv[1:]: #Add nodes to project in GNS3
     print(result)
     sys.exit()
 
-
+print(urltuple)
 if 'gns' in urltuple[2]['runtype'] and 'start' in urltuple[0]: #Nodes are started, start checking
 
     if 'noztp_check' in sys.argv:
