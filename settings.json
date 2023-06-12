@@ -51,8 +51,8 @@
 			"posshift"  : 150,
 			"templates" : {
 				"leaf"	: { 
-					"name"  : "Enterprise SONiC 3.5.4", 
-					"count" : 4,
+					"name"  : "Enterprise SONiC 4.0.3", 
+					"count" : 2,
 					"pos"   : { "x" : -50, "y" : 42 },
 					"mac" 	: { "base" : "cc:bb:aa:", "start" : 11 },
 					"vlti"	: { "count" : 2, "1st_adapter_number" : 3, "adapterstep" : 4,"port" : 0, "portstep" : 0 },
@@ -60,7 +60,7 @@
 					"borderlinks" : { "1st_adapter_number" : 2, "adapterstep" : 4, "port" : 0, "portstep" : 0 },
 					"mgtport" : { "adapter_number" : 0, "port_number" : 0 },
 					"hosts" : {
-						"name"  : "Enterprise SONiC 3.5.4", 
+						"name"  : "Enterprise SONiC 4.0.3", 
 						"count" : 1,
 						"leaflinks" : { "1st_adapter_number" : 4, "adapterstep" : 4, "port" : 0, "portstep" : 0 },
 						"hostlinks" : { "1st_adapter_number" : 1, "adapterstep" : 1, "port" : 0, "portstep" : 0 },
@@ -69,7 +69,7 @@
 					}
 				},
 				"border" : {
-					"name"  : "Enterprise SONiC 3.5.4", 
+					"name"  : "Enterprise SONiC 4.0.3", 
 					"count" : 1,
 					"pos"   : { "x" : -250, "y" : -200 },
 					"mac" 	: { "base" : "aa:bb:cc:", "start" : 31 },
@@ -79,7 +79,7 @@
 					"borderlinks" : { "1st_adapter_number" : 8, "adapterstep" : 1, "port" : 0, "portstep" : 0 }
 				},
 				"spine" : {
-					"name"  : "Enterprise SONiC 3.5.4",
+					"name"  : "Enterprise SONiC 4.0.3",
 					"count" : 1,
 					"pos"   : { "x" : 100, "y" : -200 },
 					"mac" 	: { "base" : "cc:bb:aa:", "start" : 21 },
