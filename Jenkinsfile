@@ -71,10 +71,7 @@ pipeline {
 				if (env.LS == 'proceed = True') {
 					echo 'Dev network succesfully started. Proceed to Stage Dev: Configure Dev network.'
 					echo 'This can take ~15 minutes.....'
-                                        //sleep( time: 25 )
-					//ZTP finished and now wait for swith reboot finished (ztp json option "reboot-on-success": true)
-					//If to early Ansible fails with reachability
-					sleep( time: 210 )
+                                        sleep( time: 25 )
                                 }
 				else {
 					echo 'Job execution to start Dev stage failed.'
