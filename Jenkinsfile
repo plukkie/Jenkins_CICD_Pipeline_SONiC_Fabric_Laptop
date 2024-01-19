@@ -74,7 +74,7 @@ pipeline {
                                         //sleep( time: 25 )
 					//ZTP finished and now wait for swith reboot finished (ztp json option "reboot-on-success": true)
 					//If to early Ansible fails with reachability
-					sleep( time: 180 )
+					sleep( time: 210 )
                                 }
 				else {
 					echo 'Job execution to start Dev stage failed.'
