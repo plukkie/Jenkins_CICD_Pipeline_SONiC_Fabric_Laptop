@@ -144,10 +144,7 @@ pipeline {
 					//sleep( time: 2 )
 					//sh 'python3 -u startcicd.py stopgns3 devstage' //Stop GNS3 project
             				//echo 'Proceed to Stage Prod fase Provisioning.'
-					//sleep( time: 3 )
-					//wait for swith reboot finished (instablity issue with create vlans, Ansible Nonetype get error)
-					//If to early Ansible fails with reachability
-					sleep( time: 210 )
+					sleep( time: 3 )
         			} else {
 					echo 'Closed loop Validation tests failed! Feeback from script:'
 					echo "${env.LS}"
