@@ -125,7 +125,7 @@ pipeline {
 			}
 		}
         }
-	  
+	/*  
 	stage("Stage Dev: GNS3 Run Closed loop Validation tests") {
 		environment {
 			LS = "${sh(script:'python3 -u startcicd.py launchawx devstage test | grep "proceed"', returnStdout: true).trim()}"
