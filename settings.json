@@ -45,8 +45,7 @@
 		"newprojectdevjson": {
 				    "name" : "SONiC_Dev_Fabric",
 				    "auto_open" : true,
-				    "auto_close": false,
-				    "del_if_exist": true
+				    "auto_close": false
 				  },
 		"nodesdata"	: {
 			"posshift"  : 150,
