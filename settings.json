@@ -47,6 +47,7 @@
 				    "auto_open" : true,
 				    "auto_close": false
 				  },
+		"del_project_if_exists": true,
 		"nodesdata"	: {
 			"posshift"  : 150,
 			"templates" : {
