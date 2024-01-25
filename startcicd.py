@@ -963,9 +963,10 @@ for arg in sys.argv:
 
 settings = readsettings ( settingsfile ) #Read settings to JSON object
 
-# Request API call
+# GET URL to USE for API call
 urltuple = return_url ( settings ) #Return required URL, headers if needed & other option data
-#print(urltuple)
+print('urltuple received from return_url():')
+print(urltuple)
 
 if urltuple[0] == 'proceed = True': #GNS3 is already running, Report back to proceed & exit
     print(urltuple[0]) #output used by jenkins
@@ -1005,10 +1006,10 @@ if 'creategns3project' in sys.argv[1:]: #Add nodes to project in GNS3
                 ## Project has been created
                 projectid = json.loads(response)['project_id']
                 print('Project ' + projectid + ' created.')
-                
 
         else:
            ## Configsetting delete_project = no/false, Project will NOT be DELETED
+           ## In this fase the VMs could have status STOP or START
            print('If you want to rebuild, please delete the project from GNS3.')
            print('Then restart.')
            print('For now, pipeline will continuou with current project...')
