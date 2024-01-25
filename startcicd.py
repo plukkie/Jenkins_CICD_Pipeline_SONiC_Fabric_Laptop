@@ -78,7 +78,7 @@ def return_url ( settingsobject ):
                         print('There is a stopped fabric node. Will start node ' + nodename + ' in GNS3...')
                         starturl = checkurl + '/' + nodeid + '/' + s['nodesstarturi']
                         nodestarttuple = ( starturl, httpheaders )
-                        print(nodestarttuple)
+                        #print(nodestarttuple)
                         resp = request ( nodestarttuple, "post") 
                         time.sleep(1)
 
@@ -965,8 +965,7 @@ settings = readsettings ( settingsfile ) #Read settings to JSON object
 
 # GET URL to USE for API call
 urltuple = return_url ( settings ) #Return required URL, headers if needed & other option data
-print('urltuple received from return_url():')
-print(urltuple)
+#print(urltuple)
 
 if urltuple[0] == 'proceed = True': #GNS3 is already running, Report back to proceed & exit
     print(urltuple[0]) #output used by jenkins
@@ -1036,7 +1035,6 @@ if 'creategns3project' in sys.argv[1:]: #Add nodes to project in GNS3
     print(result)
     sys.exit()
 
-print(urltuple)
 if 'gns' in urltuple[2]['runtype'] and 'start' in urltuple[0]: #Nodes are started, start checking
 
     if 'noztp_check' in sys.argv:
