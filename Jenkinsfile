@@ -6,7 +6,7 @@ pipeline {
 	  
 	stage('Build') {
 		steps {
-			sh 'pipx runpip install -r pyrequirements.txt'
+			sh 'pipx runpip -r pyrequirements.txt'
 			sh 'python3 -m py_compile startcicd.py'
 			stash(name: 'compiled-results', includes: '*.py*')
 		}
