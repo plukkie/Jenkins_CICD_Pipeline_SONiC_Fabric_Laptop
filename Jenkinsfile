@@ -93,7 +93,7 @@ pipeline {
 	stage("Stage Dev: Configure GNS3 Dev network....") {
 
 		environment {
-			LS = "${sh(script:'python3 -u startcicd.py launchawx devstage configure | grep "proceed"', returnStdout: true).trim()}"
+			LS = "${sh(script:'.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -u startcicd.py launchawx devstage configure | grep "proceed"', returnStdout: true).trim()}"
     		}
                             
 		steps {			
@@ -112,7 +112,7 @@ pipeline {
 					//println "${relaunchuri}"
 					echo 'There are failures in Ansible playbook run. Retrying once on failed hosts...'
 					sleep( time: 2 )
-					env.RL = "${sh(script:"""python3 -u startcicd.py launchawx relaunch $relaunchuri | grep 'proceed'""", returnStdout: true).trim()}"
+					env.RL = "${sh(script:""".${VENV_DIR}/${PYBINPATH}/${PYVERSION} -u startcicd.py launchawx relaunch $relaunchuri | grep 'proceed'""", returnStdout: true).trim()}"
 					//echo "${env.RL}" //Show for logging, clearity
 					println "Feedback from python script: ${RL}"
 					if (env.RL == 'proceed = True') { //100% oke
@@ -135,7 +135,7 @@ pipeline {
         }
 	stage("Stage Dev: GNS3 Run Closed loop Validation tests") {
 		environment {
-			LS = "${sh(script:'python3 -u startcicd.py launchawx devstage test | grep "proceed"', returnStdout: true).trim()}"
+			LS = "${sh(script:'.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -u startcicd.py launchawx devstage test | grep "proceed"', returnStdout: true).trim()}"
     		}
             
 		steps {
@@ -149,7 +149,7 @@ pipeline {
 					//This step is to spare on resources in the Compute platform (Dev & Prod run together gives problems) 
 					//echo 'Will decommision Dev network to spare GNS3 resources...'
 					//sleep( time: 2 )
-					//sh 'python3 -u startcicd.py stopgns3 devstage' //Stop GNS3 project
+					//sh '.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -u startcicd.py stopgns3 devstage' //Stop GNS3 project
             				//echo 'Proceed to Stage Prod fase Provisioning.'
 					sleep( time: 3 )
         			} else {
