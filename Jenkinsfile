@@ -3,15 +3,15 @@ pipeline {
   agent any
 	
   environment {
-	  VENV_DIR = 'SONiC_CICD_venv'
-	  PYVERSION = 'phyton3'
+	  VENV_DIR = "SONiC_CICD_venv"
+	  PYVERSION = "phyton3"
   }
 	
   stages {
 	  
 	stage('Build') {
 		steps {
-			sh '${PYVERSION} -m venv .${VENV_DIR}'
+			sh '"${PYVERSION}" -m venv .${VENV_DIR}'
 			sh 'source .${VENV_DIR}/bin/activate
 			sh '${PYVERSION} -m pip install -r pyrequirements.txt'
 			sh '${PYVERSION} -m py_compile startcicd.py'
