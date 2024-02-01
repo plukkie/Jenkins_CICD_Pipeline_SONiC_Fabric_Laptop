@@ -5,6 +5,7 @@ pipeline {
   environment {
 	  VENV_DIR = 'SONiC_CICD_venv'
 	  PYVERSION = 'python3'
+	  PYBINPATH = 'bin'
   }
 	
   stages {
@@ -12,9 +13,9 @@ pipeline {
 	stage('Build') {
 		steps {
 			sh '${PYVERSION} -m venv .${VENV_DIR}'
-			sh '. .${VENV_DIR}/bin/activate'
-			sh '.${VENV_DIR}/bin/${PYVERSION} -m pip install -r pyrequirements.txt'
-			sh '${PYVERSION} -m py_compile startcicd.py'
+			sh '. .${VENV_DIR}/${PYBINPATH}/activate'
+			sh '.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -m pip install -r pyrequirements.txt'
+			sh '.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -m py_compile startcicd.py'
 			stash(name: 'compiled-results', includes: '*.py*')
 		}
 	}
