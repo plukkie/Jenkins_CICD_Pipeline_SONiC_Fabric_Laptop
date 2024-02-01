@@ -4,7 +4,7 @@ pipeline {
 	
   environment {
 	  VENV_DIR = 'SONiC_CICD_venv'
-	  PYVERSION = 'phyton3'
+	  PYVERSION = 'python3'
   }
 	
   stages {
