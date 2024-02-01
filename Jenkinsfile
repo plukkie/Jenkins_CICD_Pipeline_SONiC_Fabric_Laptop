@@ -1,21 +1,28 @@
 pipeline {
 	
   agent any
-  
+	
+  environment {
+	  VENV_DIR = 'SONiC_CICD_venv'
+	  PYVERSION = 'phyton3'
+  }
+	
   stages {
 	  
 	stage('Build') {
 		steps {
-			sh 'pipx runpip pyrequirements.txt'
-			sh 'python3 -m py_compile startcicd.py'
+			sh '${PYVERSION} -m venv .${VENV_DIR}'
+			sh 'source .${VENV_DIR}/bin/activate
+			sh '${PYVERSION} -m pip install -r pyrequirements.txt'
+			sh '${PYVERSION} -m py_compile startcicd.py'
 			stash(name: 'compiled-results', includes: '*.py*')
 		}
 	}
 
     	stage('Show host versions') {
       		steps {
-			echo 'Show python3 versions:'
-        		sh 'python3 --version'
+			echo 'Show ${PYVERSION} versions:'
+        		sh '${PYVERSION} --version'
 			sh 'pip3 list'
       		}
     	}
