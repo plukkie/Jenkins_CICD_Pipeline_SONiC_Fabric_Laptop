@@ -23,8 +23,8 @@ pipeline {
     	stage('Show host versions') {
       		steps {
 			echo 'Show ${PYVERSION} versions:'
-        		sh '${PYVERSION} --version'
-			sh 'pip3 list'
+        		sh '.${VENV_DIR}/${PYBINPATH}/${PYVERSION} --version'
+			sh '.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -m pip list'
       		}
     	}
 	//This stage is to spare on resources in the Compute platform (Dev & Prod run together gives problems) 
