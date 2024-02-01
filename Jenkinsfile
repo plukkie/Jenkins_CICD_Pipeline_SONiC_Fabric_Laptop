@@ -13,7 +13,7 @@ pipeline {
 		steps {
 			sh '${PYVERSION} -m venv .${VENV_DIR}'
 			sh '. .${VENV_DIR}/bin/activate'
-			sh '${PYVERSION} -m pip install -r pyrequirements.txt'
+			sh '.${VENV_DIR}/bin/${PYVERSION} -m pip install -r pyrequirements.txt'
 			sh '${PYVERSION} -m py_compile startcicd.py'
 			stash(name: 'compiled-results', includes: '*.py*')
 		}
