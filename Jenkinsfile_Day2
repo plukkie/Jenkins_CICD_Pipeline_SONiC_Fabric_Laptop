@@ -1,28 +1,36 @@
 pipeline {
   agent any
-  
+
+  environment {
+	  VENV_DIR = 'SONiC_CICD_venv'
+	  PYVERSION = 'python3'
+	  PYBINPATH = 'bin'
+  }
+
   stages {
 	  
 	stage('Build') {
 		steps {
-			sh 'pip install -r pyrequirements.txt'
-			sh 'python3 -m py_compile startcicd.py'
+			sh '${PYVERSION} -m venv .${VENV_DIR}'
+			sh '. .${VENV_DIR}/${PYBINPATH}/activate'
+			sh '.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -m pip install -r pyrequirements.txt'
+			sh '.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -m py_compile startcicd.py'
 			stash(name: 'compiled-results', includes: '*.py*')
 		}
 	}
 
     	stage('Show host versions') {
       		steps {
-			echo 'Show python3 versions:'
-        		sh 'python3 --version'
-			sh 'pip3 list'
+			echo 'Show ${PYVERSION} versions:'
+        		sh '.${VENV_DIR}/${PYBINPATH}/${PYVERSION} --version'
+			sh '.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -m pip list'
       		}
     	}
 
 	stage("Stage Dev: Configure Day2 changes on GNS3 Dev network....") {
 
 		environment {
-			LS = "${sh(script:'python3 -u startcicd.py launchawx template "Template SONiC DEV Fabric Day2 CONFIG" | grep "proceed"', returnStdout: true).trim()}"
+			LS = "${sh(script:'.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -u startcicd.py launchawx template "Template SONiC DEV Fabric Day2 CONFIG" | grep "proceed"', returnStdout: true).trim()}"
     		}
                             
 		steps {			
@@ -41,7 +49,7 @@ pipeline {
 					//println "${relaunchuri}"
 					echo 'There are failures in Ansible playbook run. Retrying once on failed hosts...'
 					sleep( time: 2 )
-					env.RL = "${sh(script:"""python3 -u startcicd.py launchawx relaunch $relaunchuri | grep 'proceed'""", returnStdout: true).trim()}"
+					env.RL = "${sh(script:""".${VENV_DIR}/${PYBINPATH}/${PYVERSION} -u startcicd.py launchawx relaunch $relaunchuri | grep 'proceed'""", returnStdout: true).trim()}"
 					//echo "${env.RL}" //Show for logging, clearity
 					println "Feedback from python script: ${RL}"
 					
@@ -66,7 +74,7 @@ pipeline {
 	
 	stage("Stage Dev: GNS3 Day2 Run Closed loop Validation tests") {
 		environment {
-			LS = "${sh(script:'python3 -u startcicd.py launchawx template "Template SONiC DEV Fabric Day2 VALIDATION" | grep "proceed"', returnStdout: true).trim()}"
+			LS = "${sh(script:'.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -u startcicd.py launchawx template "Template SONiC DEV Fabric Day2 VALIDATION" | grep "proceed"', returnStdout: true).trim()}"
     		}
             
 		steps {
@@ -80,7 +88,7 @@ pipeline {
 					//This step is to spare on resources in the Compute platform (Dev & Prod run together gives problems) 
 					//echo 'Will decommision Dev network to spare GNS3 resources...'
 					//sleep( time: 2 )
-					//sh 'python3 -u startcicd.py stopgns3 devstage' //Stop GNS3 project
+					//sh '.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -u startcicd.py stopgns3 devstage' //Stop GNS3 project
             				//echo 'Proceed to Stage Prod fase Provisioning.'
 					sleep( time: 3 )
         			} else {
