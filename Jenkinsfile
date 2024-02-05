@@ -79,7 +79,7 @@ pipeline {
 				if (env.LS == 'proceed = True') {
 					echo 'Dev network succesfully started. Proceed to Stage Dev: Configure Dev network.'
 					echo 'This can take ~15 minutes.....'
-                                        sleep( time: 10 )
+                                        sleep( time: 5 )
                                 }
 				else {
 					echo 'Job execution to start Dev stage failed.'
