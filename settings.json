@@ -53,7 +53,7 @@
 			"templates" : {
 				"leaf"	: { 
 					"name"  : "DES_4.2.0", 
-					"count" : 6,
+					"count" : 4,
 					"pos"   : { "x" : -50, "y" : 42 },
 					"mac" 	: { "base" : "cc:bb:aa:", "start" : 11 },
 					"vlti"	: { "count" : 2, "1st_adapter_number" : 3, "adapterstep" : 4,"port" : 0, "portstep" : 0 },
