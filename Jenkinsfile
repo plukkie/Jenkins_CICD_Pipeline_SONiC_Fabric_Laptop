@@ -25,7 +25,6 @@ pipeline {
 			echo 'Show ${PYVERSION} versions:'
         		sh '.${VENV_DIR}/${PYBINPATH}/${PYVERSION} --version'
 			sh '.${VENV_DIR}/${PYBINPATH}/${PYVERSION} -m pip list'
-			sh 'ansible-galaxy collection list'
       		}
     	}
 	//This stage is to spare on resources in the Compute platform (Dev & Prod run together gives problems) 
