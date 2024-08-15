@@ -1,7 +1,7 @@
 {
 	"fabric" : {
 
-		"type" : "",
+		"type" : "evpnmh",
 		
 		"leaf" : {
 			"routerid" : "10.0.2.1",
