@@ -1,6 +1,6 @@
 {
 	"fabric" : {
-		"type" : "evpnmh",
+		
 		"leaf" : {
 			"routerid" : "10.0.2.1",
 			"dhcpsource" : "192.168.0.1",
