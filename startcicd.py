@@ -350,7 +350,7 @@ def provisiongns3project (jsonobject):
     httpheaders = {} 
     s = settings['gns3']
     nd = s['nodesdata']
-    fabrictype = settings['fabric']['type']
+    fabrictype = settings['fabric']['type'].lower()
     baseurl = s['prot']+s['serverip']+':'+s['serverport']
     projecturi = s['projecturi']
     templatesuri = s['templatesuri']
@@ -722,6 +722,7 @@ def provisiongns3project (jsonobject):
             vltlinks = 0
 
         #If EVPN Multihoming is fabric type, then set vlt links 0
+        #VLT / MClag links are not needed between leafs with EVPN-MH
         if fabrictype == 'evpnmh':
             vltlinks = 0 
 
