@@ -350,6 +350,7 @@ def provisiongns3project (jsonobject):
     httpheaders = {} 
     s = settings['gns3']
     nd = s['nodesdata']
+    fabrictype = settings['fabric']['type']
     baseurl = s['prot']+s['serverip']+':'+s['serverport']
     projecturi = s['projecturi']
     templatesuri = s['templatesuri']
@@ -719,6 +720,10 @@ def provisiongns3project (jsonobject):
             vltlinks = len(obj['vlt'])
         except:
             vltlinks = 0
+
+        #If EVPN Multihoming is fabric type, then set vlt links 0
+        if fabrictype == 'evpnmh':
+            vltlinks = 0 
 
         if vltlinks != 0: #Need to add vlt links
             switchnr = int(obj['nr'])
