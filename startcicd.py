@@ -723,7 +723,7 @@ def provisiongns3project (jsonobject):
 
         #If EVPN Multihoming is fabric type, then set vlt links 0
         #VLT / MClag links are not needed between leafs with EVPN-MH
-        if fabrictype == 'evpnmh':
+        if fabrictype == 'evpnmh' or fabrictype == 'evpn-mh' or fabrictype == 'evpn_mh':
             vltlinks = 0 
 
         if vltlinks != 0: #Need to add vlt links
