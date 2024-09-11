@@ -33,7 +33,7 @@
 		}
 	},
 	"gns3"	: {
-		"serverip"	: "192.168.1.151",
+		"serverip"	: "10.10.10.201",
 		"serverport"	: "80",
 		"projecturi"	: "v2/projects",
 		"templatesuri"	: "v2/templates",
@@ -100,7 +100,7 @@
 		}
 	},
 	"awx"	: {
-		"serverip"	: "192.168.1.1",
+		"serverip"	: "10.10.10.201",
 		"serverport"	: "30080",
 		"prot"		: "http://",
 		"projecturi"	: "api/v2/job_templates",
@@ -113,7 +113,7 @@
 		"httpheaders"	: { "Authorization" : "Bearer 78xFCmJ1BICCZ6FWCvCfQCDg0zjR6W" }
 	},
 	"ztp"	: {
-		"serverip"	      : "192.168.1.1",
+		"serverip"	      : "10.10.10.201",
 		"serverport"	      : "80",
 		"ztp_finished_dir"    : "tftpboot/ztp_finished",
 		"ztp_finished_suffix" : "_ztp.finished",
