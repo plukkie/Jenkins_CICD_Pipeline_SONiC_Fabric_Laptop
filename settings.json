@@ -72,7 +72,7 @@
 				},
 				"border" : {
 					"name"  : "Enterprise SONiC 4.2.2", 
-					"count" : 1,
+					"count" : 0,
 					"pos"   : { "x" : -250, "y" : -200 },
 					"mac" 	: { "base" : "aa:bb:cc:", "start" : 31 },
 					"mgtport" : { "adapter_number" : 0, "port_number" : 0 },
