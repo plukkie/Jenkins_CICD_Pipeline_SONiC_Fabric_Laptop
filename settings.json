@@ -48,7 +48,7 @@
 				    "auto_open" : true,
 				    "auto_close": false
 				  },
-		"delete_project" : true,
+		"delete_project" : false,
 		"nodesdata"	: {
 			"posshift"  : 150,
 			"templates" : {
@@ -101,7 +101,7 @@
 	},
 	"awx"	: {
 		"serverip"	: "10.10.10.201",
-		"serverport"	: "30080",
+		"serverport"	: "10445",
 		"prot"		: "http://",
 		"projecturi"	: "api/v2/job_templates",
 		"jobtemplateid"	: "13",
