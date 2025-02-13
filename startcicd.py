@@ -932,6 +932,8 @@ def check_ztp_finish ( addresslist):
 
     if goodcnt >= fabricswitchcount:
         result = 'ztp_finished'
+        r = requests.get(ztp_finish_base_url'/cleanup_ztpfinish.sh')
+        
     else:
         for item in ztpstats:
             status = ztpstats[item]
