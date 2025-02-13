@@ -898,8 +898,12 @@ def check_ztp_finish ( addresslist):
     reportdir = ztpjson['ztp_finished_dir']
     reportfilesuffix = ztpjson['ztp_finished_suffix']
     webcontainer = ztpjson['dyn_http_contname']
-    if webcontainer == "": ztp_finish_base_url = ztpjson['prot'] + ztpjson['serverip'] + '/' + reportdir
-    else: ztp_finish_base_url = ztpjson['prot'] + webcontainer + '/' + reportdir
+    if webcontainer == "":
+        ztp_finish_base_url = ztpjson['prot'] + ztpjson['serverip'] + '/' + reportdir
+        ztpfinish_cleanup_url = ztpjson['prot'] + ztpjson['serverip'] + '/cgi-bin/cleanup_ztpfinish.sh'
+    else:
+        ztp_finish_base_url = ztpjson['prot'] + webcontainer + '/' + reportdir
+        ztpfinish_cleanup_url = ztpjson['prot'] + webcontainer + '/cgi-bin/cleanup_ztpfinish.sh'
 
     hosts = addresslist['hosts']
     result = 'down'
@@ -932,7 +936,7 @@ def check_ztp_finish ( addresslist):
 
     if goodcnt >= fabricswitchcount:
         result = 'ztp_finished'
-        r = requests.get(ztp_finish_base_url'/cleanup_ztpfinish.sh')
+        r = requests.get(ztpfinish_cleanup_url)
         
     else:
         for item in ztpstats:
