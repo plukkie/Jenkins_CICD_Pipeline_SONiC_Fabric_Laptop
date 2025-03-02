@@ -41,14 +41,14 @@
 		"nodesstarturi"	: "start",
 		"nodesstopuri"	: "stop",
 		"prot"		: "http://",
-		"starttimeout"  : 1901,
+		"starttimeout"  : 1900,
 		"boottimer"	: 180,
 		"newprojectdevjson": {
 				    "name" : "SONiC_Dev_Fabric",
 				    "auto_open" : true,
 				    "auto_close": false
 				  },
-		"delete_project" : yes,
+		"delete_project" : true,
 		"nodesdata"	: {
 			"posshift"  : 150,
 			"templates" : {
