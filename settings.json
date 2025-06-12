@@ -81,7 +81,7 @@
 					"borderlinks" : { "1st_adapter_number" : 8, "adapterstep" : 1, "port" : 0, "portstep" : 0 }
 				},
 				"spine" : {
-					"name"  : "Enterprise SONiC 4.2.2",
+					"name"  : "Enterprise SONiC 4.5.0",
 					"count" : 1,
 					"pos"   : { "x" : 100, "y" : -200 },
 					"mac" 	: { "base" : "cc:bb:aa:", "start" : 21 },
